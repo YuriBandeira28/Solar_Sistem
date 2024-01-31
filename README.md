@@ -1,6 +1,8 @@
 # Sobre o Projeto:
 
-Trabalho realizado para disciplina de Computação gráfica utilizando PyOpenGL com o intúito de aprender sobre renderização e manipulação de formas em 3D utilizando texturas e iluminação
+Trabalho realizado para disciplina de Computação gráfica utilizando PyOpenGL.
+
+O foco principal do projeto foi a criação de um sistema solar interativo em 3D, explorando técnicas de iluminação e controles de movimento para oferecer uma experiência de visualização envolvente.
 
 # Rodando o Projeto:
 ## Clonando o Repositório:
