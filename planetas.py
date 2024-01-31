@@ -170,8 +170,11 @@ class Venus():
 
 class Terra():
 
-    def __init__(self, textura):
+    def __init__(self, textura, textura_lua, n_luas):
         self.textura = textura
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
+
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -185,6 +188,7 @@ class Terra():
         quadric = gluNewQuadric()
         gluQuadricTexture(quadric, GL_TRUE)
         gluSphere(quadric, 0.12, 100, 100) 
+        self.desenha_lua(angulo)
         glPopMatrix()
 
     def orbita(self):
@@ -197,12 +201,32 @@ class Terra():
             glVertex3f(x, y, height)
         glEnd()
 
+    def desenha_lua(self, angulo):
+        translate = 0.15
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            glRotate(-90, 1, 0, 0)
+            glRotate(angulo, 0, 0, 1)
+            # glRotate(-angulo, 1, 1 ,1)
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate * -3
+            glPopMatrix()
 
 
 class Marte():
 
-    def __init__(self, textura):
+    def __init__(self, textura, textura_lua, n_luas):
         self.textura = textura
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -215,6 +239,7 @@ class Marte():
         quadric = gluNewQuadric()
         gluQuadricTexture(quadric, GL_TRUE)
         gluSphere(quadric, 0.07, 100, 100) 
+        self.desenha_lua(angulo)
         glPopMatrix()
 
     def orbita(self):
@@ -227,11 +252,29 @@ class Marte():
             glVertex3f(x, y, height)
         glEnd()
 
+    def desenha_lua(self, angulo):
+        translate = 0.1
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate = -0.2
+            glPopMatrix()
+
 
 class Jupiter():
 
-    def __init__(self, textura):
+    def __init__(self, textura, textura_lua, n_luas):
         self.textura = textura
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -244,6 +287,7 @@ class Jupiter():
         quadric = gluNewQuadric()
         gluQuadricTexture(quadric, GL_TRUE)
         gluSphere(quadric, 0.18, 100, 100) 
+        self.desenha_lua(angulo)
         glPopMatrix()
 
 
@@ -257,12 +301,32 @@ class Jupiter():
             glVertex3f(x, y, height)
         glEnd()
 
+    def desenha_lua(self, angulo):
+        translate = 0.2
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            glRotate(-90, 1, 0, 0)
+            glRotate(angulo, 0, 0, 1)
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate = -0.4
+            glPopMatrix()
+
 
 class Saturno():
 
-    def __init__(self, textura, textura_anel):
+    def __init__(self, textura, textura_anel, textura_lua, n_luas):
         self.textura = textura
         self.textura_anel = textura_anel
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -277,6 +341,7 @@ class Saturno():
         gluSphere(quadric, 0.13, 100, 100) 
         glRotate(-30, 1, 0, 0)
         self.aneis()
+        self.desenha_lua(angulo)
         glPopMatrix()
 
     def aneis(self):
@@ -297,9 +362,29 @@ class Saturno():
             glVertex3f(x, y, height)
         glEnd()
 
+    def desenha_lua(self, angulo):
+        translate = 0.2
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            glRotate(-90, 1, 0, 0)
+            glRotate(angulo, 0, 0, 1)
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate = -0.4
+            glPopMatrix()
+
 class Urano():
-    def __init__(self, textura):
+    def __init__(self, textura, textura_lua, n_luas):
         self.textura = textura
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -312,6 +397,7 @@ class Urano():
         quadric = gluNewQuadric()
         gluQuadricTexture(quadric, GL_TRUE)
         gluSphere(quadric, 0.12, 100, 100) 
+        self.desenha_lua(angulo)
         glPopMatrix()
 
 
@@ -325,11 +411,32 @@ class Urano():
             glVertex3f(x, y, height)
         glEnd()
 
+    def desenha_lua(self, angulo):
+        translate = 0.15
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            glRotate(-90, 1, 0, 0)
+            glRotate(angulo, 0, 0, 1)
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate = -0.3
+            glPopMatrix()
+
 
 class Netuno():
 
-    def __init__(self, textura):
+    def __init__(self, textura, textura_lua, n_luas):
         self.textura = textura
+        self.textura_lua = textura_lua
+        self.n_luas = n_luas
 
     def desenha(self, angulo):
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -342,6 +449,7 @@ class Netuno():
         quadric = gluNewQuadric()
         gluQuadricTexture(quadric, GL_TRUE)
         gluSphere(quadric, 0.11, 100, 100) 
+        self.desenha_lua(angulo)
         glPopMatrix()
 
 
@@ -354,3 +462,21 @@ class Netuno():
             y = radius * sin(theta)
             glVertex3f(x, y, height)
         glEnd()
+
+    def desenha_lua(self, angulo):
+        translate = 0.2
+        for _ in range(self.n_luas):
+            glTranslatef(-translate, 0, translate)
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+            glEnable(GL_DEPTH_TEST)
+            glPushMatrix()
+            glBindTexture(GL_TEXTURE_2D, self.textura_lua) 
+            glRotate(-90, 1, 0, 0)
+            glRotate(angulo, 0, 0, 1)
+            quadric = gluNewQuadric()
+            gluQuadricTexture(quadric, GL_TRUE)
+            gluSphere(quadric, 0.02, 100, 100) 
+            if self.n_luas > 1:
+                translate = -0.4
+            glPopMatrix()

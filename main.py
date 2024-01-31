@@ -49,17 +49,21 @@ TEXTURA_URANO = load_texture(TEXTURA_URANO_ID)
 TEXTURA_NETUNO_ID = "texturas/netuno.jpg"
 TEXTURA_NETUNO = load_texture(TEXTURA_NETUNO_ID)
 
+
+TEXTURA_LUA_ID = "texturas/lua.jpg"
+TEXTURA_LUA = load_texture(TEXTURA_LUA_ID)
+
 #instancia as classes
 fundo = Fundo(TEXTURA_FUNDO)
 sol = Sol(TEXTURA_SOL)
 mercurio = Mercurio(TEXTURA_MERCURIO)
 venus = Venus(TEXTURA_VENUS)
-terra = Terra(TEXTURA_TERRA)
-marte = Marte(TEXTURA_MARTE)
-jupiter = Jupiter(TEXTURA_JUPITER)
-saturno = Saturno(TEXTURA_SATURNO, TEXTURA_SATURNO_ANEIS)
-urano = Urano(TEXTURA_URANO)
-netuno = Netuno(TEXTURA_NETUNO)
+terra = Terra(TEXTURA_TERRA, TEXTURA_LUA, 1)
+marte = Marte(TEXTURA_MARTE, TEXTURA_LUA, 2)
+jupiter = Jupiter(TEXTURA_JUPITER, TEXTURA_LUA, 2) #97
+saturno = Saturno(TEXTURA_SATURNO, TEXTURA_SATURNO_ANEIS, TEXTURA_LUA, 2)#145
+urano = Urano(TEXTURA_URANO, TEXTURA_LUA, 2) #27
+netuno = Netuno(TEXTURA_NETUNO, TEXTURA_LUA, 2) # 14
 
 angulo = 0
 anguloMercurio = 0
@@ -161,25 +165,12 @@ while True:
             pygame.quit()
             quit()
     
-
         keys = pygame.key.get_pressed()
 
-        # # Controles da câmera
         if event.type == pygame.KEYDOWN:
-            # move no eixo X
-            if keys[pygame.K_LEFT]:
-                camera_x -= 0.01
-            elif keys[pygame.K_RIGHT]:
-                camera_x += 0.01
-    
-            # move no eixo Y
-            elif keys[pygame.K_UP]:
-                camera_y += 0.01
-            elif keys[pygame.K_DOWN]:
-                camera_y -= 0.01
-            
-            # rotaciona no eixo Y
-            elif keys[pygame.K_w]:
+
+             # rotaciona no eixo Y
+            if keys[pygame.K_w]:
                 rotatey += 0.1
             elif keys[pygame.K_s]:
                 rotatey -= 0.1
@@ -191,17 +182,18 @@ while True:
                 rotatez -= 0.1
 
             elif keys[pygame.K_SPACE]:
-                
                 camera_x, camera_y, zoom = 0, 0, 1
                 rotatex, rotatey, rotatez = 0, 0, 0
 
+
+            
         if event.type == pygame.MOUSEBUTTONDOWN:
             # zoom
             if event.button == 4:
-                zoom += 0.01
+                zoom += 0.1
 
             elif event.button == 5:
-                zoom -= 0.01
+                zoom -= 0.1
             
             # rotaciona no eixo X
             elif event.button == 1:
@@ -209,21 +201,39 @@ while True:
             
             elif event.button == 3:
                 rotatex -= 0.1
-            
-    
+
+    keys = pygame.key.get_pressed()
+
+    # # Controles da câmera
+    if event.type == pygame.KEYDOWN:
+        # move no eixo X
+        if keys[pygame.K_LEFT]:
+            camera_x -= 0.01
+        elif keys[pygame.K_RIGHT]:
+            camera_x += 0.01
+
+        # move no eixo Y
+        elif keys[pygame.K_UP]:
+            camera_y += 0.01
+        elif keys[pygame.K_DOWN]:
+            camera_y -= 0.01
+
+        
     glScalef(zoom, zoom, zoom)
-    glTranslatef(-camera_x, -camera_y, 0)
-    # camera_x, camera_y, zoom = 0, 0, 1
-    zoom = 1
     glRotate(rotatex, 1, 0, 0)
     glRotate(rotatey, 0, 1, 0)
     glRotate(rotatez, 0, 0, 1)
+    zoom = 1
+
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     fundo.desenha()
 
     glPushMatrix()
+    glTranslatef(-camera_x, -camera_y, 0)
+    # camera_x, camera_y, zoom = 0, 0, 1
+   
     glPushMatrix()
     
     
