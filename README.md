@@ -12,4 +12,4 @@ git clone https://github.com/YuriBandeira28/Solar_Sistem.git
 pip install -r requirements.txt
 ```
 # Demonstração:
-![image](https://github.com/YuriBandeira28/Solar_Sistem/assets/97187847/e64b8560-7b2d-4c2f-bcb7-f0edd42fec3b)
+![image](https://github.com/YuriBandeira28/Solar_Sistem/assets/97187847/9258227b-7b73-46f6-80fb-dc740f938a5b)
