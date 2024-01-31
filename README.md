@@ -11,7 +11,7 @@ git clone https://github.com/YuriBandeira28/Solar_Sistem.git
 ```bash
 pip install -r requirements.txt
 ```
-## Rodando:
+## Iniciando:
 ```bash
 python main.py
 ```
