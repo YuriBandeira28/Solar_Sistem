@@ -25,7 +25,7 @@ python3 main.py
 # Demonstração:
 ![image](https://github.com/YuriBandeira28/Solar_Sistem/assets/97187847/9258227b-7b73-46f6-80fb-dc740f938a5b)
 
-## Bibliotecas e linguagens Utilizadas
+# Bibliotecas e linguagens Utilizadas
 - Python 3.10.11
 - ﻿numpy==1.26.3
 - pygame==2.5.2
